@@ -86,8 +86,8 @@ function App() {
 					animate={{ x: 0 }}
 					transition={{ duration: 0.75 }}
 				>
-					<LiveChat style={{ marginBottom: 300 }} />
-					<DonationCard />
+					<LiveChat/>
+					<DonationCard/>
 				</motion.div>
 			</ThemeProvider>
 		</UserContext.Provider>

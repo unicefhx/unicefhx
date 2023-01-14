@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Typography, List, TextField } from '@mui/material';
+import { Card, Typography, List, TextField, Button } from '@mui/material';
 
 export const LiveChat = () => {
 	let comments = [
@@ -116,7 +116,24 @@ export const LiveChat = () => {
                         )
                     })}
                 </List>
-                <TextField label="Comment" style={{ marginLeft: "5%", width : "90%", marginTop: "3%", height: "20vh" }} />
+                <div
+                    style={{
+                        flexDirection: 'row',
+                        marginTop: "-4vh",
+                    }}
+                >
+                    <textarea label="Comment" size="small" 
+                        style={{ marginLeft: "5%", width : "65%", marginTop: "10%", height: "5vh" }} 
+                        onChange={{
+
+                        }}
+                    />
+                    <Button variant="contained" style={{ height : "5vh", marginLeft: "2%", marginTop : "-15%" }}
+                        onClick={() => {
+
+                        }}
+                    >Lmao</Button>
+                </div>
             </Card>
         </div>
     )
