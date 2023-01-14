@@ -26,7 +26,6 @@ const slotStyles = {
 };
 
 function App() {
-	console.log(supabase.auth);
 	const [user, setUser] = useState();
 
 	useEffect(() => {
@@ -35,7 +34,6 @@ function App() {
 		});
 
 		supabase.auth.onAuthStateChange((event, session) => {
-			console.log("onAuthStateChange", event, session);
 			setUser(session?.user ?? null);
 		});
 	}, []);

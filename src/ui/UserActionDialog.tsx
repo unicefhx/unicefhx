@@ -19,33 +19,32 @@ export const UserActionDialog = (props: {
 	setOpen: (v: boolean) => void;
 }) => {
 	const user = useContext(UserContext);
-	console.log(user);
-	const [name, setName] = useState<string>(user?.user_metadata.full_name || "");
+	const [name, setName] = useState<string>(user?.user_metadata.name || "");
 	const [position, setPosition] = useState<string>(
 		user?.user_metadata.position || ""
 	);
 
-	const [photoUrl, setPhotoUrl] = useState<string>(
-		user?.user_metadata.photo_url || ""
-	);
+	const [image, setImage] = useState<string>(user?.user_metadata.image || "");
 
-	console.log(user?.user_metadata);
+	const [bio, setBio] = useState<string>(user?.user_metadata.bio || "");
 
 	async function update() {
 		await supabase.auth.updateUser({
 			data: {
-				full_name: name,
-				position: position,
+				name,
+				position,
+				bio,
 			},
 		});
 		props.setOpen(false);
+		await syncProfile();
 	}
 
 	async function updatePhoto(file: File) {
 		if (!file) return;
 		const { data, error } = await supabase.storage
 			.from("assets")
-			.upload(user!.id, file);
+			.upload(v4(), file);
 		if (error) {
 			console.log(error);
 			return;
@@ -55,19 +54,30 @@ export const UserActionDialog = (props: {
 		} = supabase.storage.from("assets").getPublicUrl(data.path);
 		await supabase.auth.updateUser({
 			data: {
-				photo_url: publicUrl,
+				image: publicUrl,
 			},
 		});
-		setPhotoUrl(publicUrl);
+		setImage(publicUrl);
+		await syncProfile();
+	}
+
+	async function syncProfile() {
+		await supabase.from("profiles").upsert({
+			id: user!.id,
+			name,
+			position,
+			image,
+			bio,
+		});
 	}
 
 	return (
-		<Dialog open={props.open} onClose={() => props.setOpen(false)}>
-			<DialogTitle>Modifier votre profile</DialogTitle>
+		<Dialog open={props.open} onClose={() => props.setOpen(false)} fullWidth>
+			<DialogTitle>Modifier votre compte</DialogTitle>
 			<DialogContent>
 				<Stack direction="row" spacing={5}>
 					<Stack direction="column" spacing={2}>
-						<Avatar sx={{ width: 100, height: 100 }} src={photoUrl}>
+						<Avatar sx={{ width: 100, height: 100 }} src={image}>
 							R
 						</Avatar>
 						<div style={{ display: "flex", justifyItems: "center" }}>
@@ -86,22 +96,31 @@ export const UserActionDialog = (props: {
 							</Button>
 						</div>
 					</Stack>
-					<Stack>
+					<Stack width={500}>
 						<TextField
 							autoFocus
-							label="Votre nom"
+							label="Nom"
 							value={name}
 							fullWidth
-							variant="standard"
+							variant="filled"
 							onChange={(e) => setName(e.target.value)}
 						/>
 						<TextField
 							autoFocus
-							label="Votre position"
+							label="Position"
 							value={position}
 							fullWidth
-							variant="standard"
+							variant="filled"
 							onChange={(e) => setPosition(e.target.value)}
+						/>
+						<TextField
+							multiline
+							rows={4}
+							label="Bio"
+							value={bio}
+							fullWidth
+							variant="filled"
+							onChange={(e) => setBio(e.target.value)}
 						/>
 					</Stack>
 				</Stack>

@@ -9,25 +9,19 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserActionDialog } from "./UserActionDialog";
 import { UserContext } from "../lib/UserContext";
 import { supabase } from "../lib/supabase";
+import { CreatePostDialog } from "./CreatePostDialog";
 
 export function CreatePostCard() {
 	const [editOpen, setEditOpen] = useState(false);
-	const [profileUrl, setProfileUrl] = useState(null);
+	const [createOpen, setCreateOpen] = useState(false);
 	const user = useContext(UserContext);
-
-	useEffect(() => {
-		const {
-			data: { publicUrl },
-		} = supabase.storage.from("assets").getPublicUrl(user.id);
-		setProfileUrl(publicUrl);
-	}, []);
 
 	return (
 		<Card sx={{ width: 400 }}>
 			<CardContent>
 				<CardHeader
 					avatar={
-						<Avatar src={profileUrl}>
+						<Avatar src={user.user_metadata.image}>
 							{user.user_metadata?.full_name?.[0]}
 						</Avatar>
 					}
@@ -36,14 +30,14 @@ export function CreatePostCard() {
 							<IconButton onClick={() => setEditOpen(true)}>
 								<MoreVert />
 							</IconButton>
-							<IconButton>
+							<IconButton onClick={() => setCreateOpen(true)}>
 								<AddIcon />
 							</IconButton>
 						</>
 					}
 					title={
 						<>
-							{user.user_metadata?.full_name}{" "}
+							{user.user_metadata?.name}{" "}
 							<span style={{ color: "grey" }}>
 								{user.user_metadata?.position}
 							</span>
@@ -53,6 +47,7 @@ export function CreatePostCard() {
 				/>
 			</CardContent>
 			<UserActionDialog open={editOpen} setOpen={setEditOpen} />
+			<CreatePostDialog open={createOpen} setOpen={setCreateOpen} />
 		</Card>
 	);
 }
