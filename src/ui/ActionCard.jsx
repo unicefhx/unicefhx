@@ -9,7 +9,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserActionDialog } from "./UserActionDialog";
 import { UserContext } from "../lib/UserContext";
 import { supabase } from "../lib/supabase";
-import Typography from "@mui/material/Typography";
 
 export function CreatePostCard() {
 	const [editOpen, setEditOpen] = useState(false);
