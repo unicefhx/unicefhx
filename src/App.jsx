@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import { CreatePostCard } from "./ui/ActionCard";
 import { UserContext } from "./lib/UserContext";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 const darkTheme = createTheme({
 	palette: {
@@ -50,8 +50,8 @@ function App() {
 						top: 0,
 						...slotStyles,
 					}}
-					animate={{ right : 0 }}
-					transition={{ duration : 0.75 }}
+					animate={{ right: 0 }}
+					transition={{ duration: 0.75 }}
 				>
 					{user ? <CreatePostCard /> : <LoginForm />}
 				</motion.div>
@@ -61,8 +61,8 @@ function App() {
 						bottom: 0,
 						...slotStyles,
 					}}
-					animate={{ right : 0 }}
-					transition={{ duration : 0.75 }}
+					animate={{ right: 0 }}
+					transition={{ duration: 0.75 }}
 				>
 					<FeedCard />
 				</motion.div>
@@ -75,7 +75,7 @@ function App() {
 					animate={{ x : "2vw" }}
 					transition={{ duration : 0.75 }}
 				>
-					<LogoIcon/>
+					<LogoIcon />
 				</motion.div>
 				<motion.div
 					style={{
@@ -83,12 +83,11 @@ function App() {
 						bottom: 0,
 						...slotStyles,
 					}}
-					animate={{ x : 0 }}
-					transition={{ duration : 0.75 }}
+					animate={{ x: 0 }}
+					transition={{ duration: 0.75 }}
 				>
-					<LiveChat style={{ marginBottom: 300 }}/>
+					<LiveChat style={{ marginBottom: 300 }} />
 					<DonationCard />
-				
 				</motion.div>
 			</ThemeProvider>
 		</UserContext.Provider>

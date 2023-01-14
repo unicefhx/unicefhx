@@ -2,55 +2,62 @@ import React from 'react';
 import { Card, Typography, List, TextField } from '@mui/material';
 
 export const LiveChat = () => {
-
-    let comments = [
-        {
-            author : "jesuisdrole",
-            comment_title : "Je ne suis pas drole",
-            comment : "Ceci n'est pas drole",
-            time : "dd-mm-yyyy",
-        },{
-            author : "jesuisdrole",
-            comment_title : "Je ne suis pas drole",
-            comment : "Ceci n'est pas drole",
-            time : "dd-mm-yyyy",
-        },{
-            author : "jesuisdrole",
-            comment_title : "Je ne suis pas drole",
-            comment : "Ceci n'est pas drole",
-            time : "dd-mm-yyyy",
-        },{
-            author : "jesuisdrole",
-            comment_title : "Je ne suis pas drole",
-            comment : "Ceci n'est pas drole",
-            time : "dd-mm-yyyy",
-        },{
-            author : "jesuisdrole",
-            comment_title : "Je ne suis pas drole",
-            comment : "Ceci n'est pas drole",
-            time : "dd-mm-yyyy",
-        },{
-            author : "jesuisdrole",
-            comment_title : "Je ne suis pas drole",
-            comment : "Ceci n'est pas drole",
-            time : "dd-mm-yyyy",
-        },{
-            author : "jesuisdrole",
-            comment_title : "Je ne suis pas drole",
-            comment : "Ceci n'est pas drole",
-            time : "dd-mm-yyyy",
-        },{
-            author : "jesuisdrole",
-            comment_title : "Je ne suis pas drole",
-            comment : "Ceci n'est pas drole",
-            time : "dd-mm-yyyy",
-        },{
-            author : "jesuisdrole",
-            comment_title : "Je ne suis pas drole",
-            comment : "Ceci n'est pas drole",
-            time : "dd-mm-yyyy",
-        },
-    ]
+	let comments = [
+		{
+			author: "jesuisdrole",
+			comment_title: "Je ne suis pas drole",
+			comment: "Ceci n'est pas drole",
+			time: "dd-mm-yyyy",
+		},
+		{
+			author: "jesuisdrole",
+			comment_title: "Je ne suis pas drole",
+			comment: "Ceci n'est pas drole",
+			time: "dd-mm-yyyy",
+		},
+		{
+			author: "jesuisdrole",
+			comment_title: "Je ne suis pas drole",
+			comment: "Ceci n'est pas drole",
+			time: "dd-mm-yyyy",
+		},
+		{
+			author: "jesuisdrole",
+			comment_title: "Je ne suis pas drole",
+			comment: "Ceci n'est pas drole",
+			time: "dd-mm-yyyy",
+		},
+		{
+			author: "jesuisdrole",
+			comment_title: "Je ne suis pas drole",
+			comment: "Ceci n'est pas drole",
+			time: "dd-mm-yyyy",
+		},
+		{
+			author: "jesuisdrole",
+			comment_title: "Je ne suis pas drole",
+			comment: "Ceci n'est pas drole",
+			time: "dd-mm-yyyy",
+		},
+		{
+			author: "jesuisdrole",
+			comment_title: "Je ne suis pas drole",
+			comment: "Ceci n'est pas drole",
+			time: "dd-mm-yyyy",
+		},
+		{
+			author: "jesuisdrole",
+			comment_title: "Je ne suis pas drole",
+			comment: "Ceci n'est pas drole",
+			time: "dd-mm-yyyy",
+		},
+		{
+			author: "jesuisdrole",
+			comment_title: "Je ne suis pas drole",
+			comment: "Ceci n'est pas drole",
+			time: "dd-mm-yyyy",
+		},
+	];
 
     return (
         <div className="App"

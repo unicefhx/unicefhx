@@ -28,12 +28,12 @@ export function LoginForm() {
 	}
 
 	return (
-		<Card sx={{ maxWidth: 400 }}>
-			<CardContent>
+		<Card sx={{ maxWidth: 400}} variant="outlined">
+			<CardContent >
 				<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
 					Vous n'avez pas de compte.
 				</Typography>
-				<Typography sx={{ mb: 1.5 }} color="text.secondary">
+				<Typography sx={{ mb: 1 }} color="text.secondary">
 					Créez-en un maintenant avec e-mail!
 				</Typography>
 				<Typography variant="body2" sx={{ marginBottom: 2 }}>
