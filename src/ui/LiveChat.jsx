@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Typography, List } from '@mui/material';
+import { Card, Typography, List, TextField } from '@mui/material';
 
 export const LiveChat = () => {
 
@@ -68,7 +68,7 @@ export const LiveChat = () => {
                 <Typography
                     style={{
                         marginLeft: "1vw",
-                        marginTop: "1vh",
+                        marginTop: "2vh",
                     }}
                 >Commentaires :</Typography>
                 <List
@@ -78,7 +78,7 @@ export const LiveChat = () => {
                         bgcolor: 'background.paper',
                         position: 'relative',
                         overflow: 'auto',
-                        maxHeight: "100%",
+                        maxHeight: "70%",
                     }}
                 >
                     {comments.map((comments) => {
@@ -109,6 +109,7 @@ export const LiveChat = () => {
                         )
                     })}
                 </List>
+                <TextField label="Comment" style={{ marginLeft: "5%", width : "90%", marginTop: "3%", height: "20vh" }} />
             </Card>
         </div>
     )

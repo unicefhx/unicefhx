@@ -68,18 +68,18 @@ function App() {
 				</motion.div>
 				<motion.div
 					style={{
-						x: -170,
+						x: "-20vw",
 						top: 0,
 						...slotStyles,
 					}}
-					animate={{ x : 25 }}
+					animate={{ x : "2vw" }}
 					transition={{ duration : 0.75 }}
 				>
 					<LogoIcon/>
 				</motion.div>
 				<motion.div
 					style={{
-						x: -300,
+						x: "-20vw",
 						bottom: 0,
 						...slotStyles,
 					}}

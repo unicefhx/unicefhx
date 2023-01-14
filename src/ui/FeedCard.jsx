@@ -76,7 +76,8 @@ export const FeedCard = () => {
 
     const cardVariants = {
         onHover : { opacity : 1 },
-        clickedState : { opacity : 1, x: "-32vw", y: "-40vh", marginBottom : "12vh", marginLeft : "-25vw", scale : 1.5, width : "10vw", height : "100%" },
+        clickedState : { opacity : 1, x: "-32vw", y: "-40vh", marginBottom : "12vh", 
+                          marginLeft : "-25vw", scale : 1.5, width : "14vw", height : "100%" },
         unClickedState : { opacity : 0.2 },
     }
 
@@ -93,7 +94,7 @@ export const FeedCard = () => {
             variants={cardVariants}
             onClick={() => setIsClicked(!isClicked)}
         >
-			<Card sx={{ minWidth: 275 }}
+			<Card sx={{ minWidth: "10vw" }}
             >
 				<CardContent>
 					<Typography sx={{ fontSize: 20 }}>
