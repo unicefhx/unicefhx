@@ -13,6 +13,8 @@ import { CreatePostCard } from "./ui/ActionCard";
 import { UserContext } from "./lib/UserContext";
 
 import { motion } from 'framer-motion';
+import { Reaction } from "./ui/Reaction";
+import { SearchBar } from "./ui/SearchBar";
 
 const darkTheme = createTheme({
 	palette: {
@@ -76,7 +78,9 @@ function App() {
 					animate={{ x : 25 }}
 					transition={{ duration : 0.75 }}
 				>
-					<LogoIcon/>
+					{/*<Reaction/>*/}
+					{/*<LogoIcon/>*/}
+					<SearchBar/>
 				</motion.div>
 				<motion.div
 					style={{
