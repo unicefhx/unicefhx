@@ -11,72 +11,72 @@ import { motion } from "framer-motion";
 
 export const FeedCard = () => {
 
-    const itemData = [
+    let itemData = [
         {
           img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
           title: 'Breakfast',
-          author: '@bkristastucchio',
+          headline: '@bkristastucchio',
         },
         {
           img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
           title: 'Burger',
-          author: '@rollelflex_graphy726',
+          headline: '@rollelflex_graphy726',
         },
         {
           img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
           title: 'Camera',
-          author: '@helloimnik',
+          headline: '@helloimnik',
         },
         {
           img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
           title: 'Coffee',
-          author: '@nolanissac',
+          headline: '@nolanissac',
         },
         {
           img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
           title: 'Hats',
-          author: '@hjrc33',
+          headline: '@hjrc33',
         },
         {
           img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
           title: 'Honey',
-          author: '@arwinneil',
+          headline: '@arwinneil',
         },
         {
           img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
           title: 'Basketball',
-          author: '@tjdragotta',
+          headline: '@tjdragotta',
         },
         {
           img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
           title: 'Fern',
-          author: '@katie_wasserman',
+          headline: '@katie_wasserman',
         },
         {
           img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
           title: 'Mushrooms',
-          author: '@silverdalex',
+          headline: '@silverdalex',
         },
         {
           img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
           title: 'Tomato basil',
-          author: '@shelleypauls',
+          headline: '@shelleypauls',
         },
         {
           img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
           title: 'Sea star',
-          author: '@peterlaster',
+          headline: '@peterlaster',
         },
         {
           img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
           title: 'Bike',
-          author: '@southside_customs',
+          headline: '@southside_customs',
         },
     ];
 
     const cardVariants = {
         onHover : { opacity : 1 },
-        clickedState : { opacity : 1, marginBottom : 130, marginLeft : -385, scale : 1.8, width : 275 },
+        clickedState : { opacity : 1, x: "-32vw", y: "-40vh", marginBottom : "12vh", marginLeft : "-25vw", scale : 1.5, width : "10vw", height : "100%" },
         unClickedState : { opacity : 0.2 },
     }
 
@@ -89,7 +89,7 @@ export const FeedCard = () => {
             }}
             whileHover={{opacity:1}}
             animate={isClicked ? 'clickedState' : 'unClickedState'}
-            transition={{ type: "spring", stiffness : 700, damping : 30 }}
+            transition={{ stiffness : 700, damping : 30 }}
             variants={cardVariants}
             onClick={() => setIsClicked(!isClicked)}
         >
@@ -100,7 +100,7 @@ export const FeedCard = () => {
 						Votre fil d'actualité :
 					</Typography>
           <motion.Typography style={{ fontSize: 14 }}>
-						(Cliquez-ici pour agrandir/rétrécir)
+						(Cliquez pour agrandir ou rétrécir)
 					</motion.Typography>
 				</CardContent>
 
@@ -115,8 +115,8 @@ export const FeedCard = () => {
                         />
                         <ImageListItemBar
                             title={item.title}
-                            subtitle={<span style={{ fontSize: 10 }}>by: {item.author}</span>}
-                            position="below"
+                            subtitle={<span style={{ fontSize: 10 }}>{item.headline}</span>}
+                            position="bottom"
                         />
                         </ImageListItem>
                     ))}
