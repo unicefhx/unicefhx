@@ -14,7 +14,10 @@ export const DonationCard = () => {
 						Joignez-vous à notre cause!
 					</Typography>
 					<Typography variant="body2">
-						Faites un don à l'UNICEF
+						Faites un don à l'UNICEF!
+					</Typography>
+					<Typography variant="body2">
+						Donnez à une cause charitable!
 					</Typography>
 				</CardContent>
 				<CardActions>
@@ -22,7 +25,7 @@ export const DonationCard = () => {
 						variant="contained"
 						onClick={() => window.open("https://secure.unicef.ca/page/30466/donate")}
 						>
-						Learn More
+						Apprennez-en plus!
 					</Button>
 				</CardActions>
 			</Card>

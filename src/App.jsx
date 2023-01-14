@@ -3,6 +3,7 @@ import { LoginForm } from "./ui/LoginForm";
 import { DonationCard } from "./ui/DonationCard";
 import { FeedCard } from "./ui/FeedCard";
 import { LogoIcon } from "./ui/LogoIcon";
+import { LiveChat } from "./ui/LiveChat";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -16,7 +17,7 @@ import { motion } from 'framer-motion';
 
 const darkTheme = createTheme({
 	palette: {
-		mode: "dark",
+		mode: "light",
 	},
 });
 
@@ -87,7 +88,9 @@ function App() {
 					animate={{ x : 0 }}
 					transition={{ duration : 0.75 }}
 				>
+					<LiveChat style={{ marginBottom: 300 }}/>
 					<DonationCard />
+				
 				</motion.div>
 			</ThemeProvider>
 		</UserContext.Provider>
