@@ -11,9 +11,10 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import TextField from "@mui/material/TextField";
-import PhotoCamera from "@mui/icons-material/PhotoCamera";
+import MoreVert from "@mui/icons-material/MoreVert";
 import Stack from "@mui/material/Stack";
 import React from "react";
+import { supabase } from "../lib/supabase";
 
 export function CreatePostCard() {
 	const [editOpen, setEditOpen] = React.useState(false);
@@ -26,7 +27,7 @@ export function CreatePostCard() {
 					action={
 						<>
 							<IconButton onClick={() => setEditOpen(true)}>
-								<EditIcon />
+								<MoreVert />
 							</IconButton>
 							<IconButton>
 								<AddIcon />
@@ -75,6 +76,7 @@ export function CreatePostCard() {
 					</Stack>
 				</DialogContent>
 				<DialogActions>
+					<Button onClick={() => supabase.auth.signOut()}>Deconnexion</Button>
 					<Button onClick={() => setEditOpen(false)}>Annuler</Button>
 					<Button onClick={() => setEditOpen(false)}>Modifier</Button>
 				</DialogActions>
