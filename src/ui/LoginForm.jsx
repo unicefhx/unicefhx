@@ -11,7 +11,7 @@ export function LoginForm() {
 		<Card sx={{ minWidth: 275 }}>
 			<CardContent>
 				<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-					Vous n'avez
+					Vous n'avez pas de compte.
 				</Typography>
 
 				<Typography sx={{ mb: 1.5 }} color="text.secondary">
