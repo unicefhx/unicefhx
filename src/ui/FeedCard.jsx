@@ -6,6 +6,7 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import Typography from "@mui/material/Typography";
 import { motion } from "framer-motion";
 import React, { useState, useEffect } from "react";
+import { setPostId } from "../App";
 import { supabase } from "../lib/supabase";
 
 export const FeedCard = () => {
@@ -21,7 +22,7 @@ export const FeedCard = () => {
   const cardVariants = {
     onHover: { opacity: 1 },
     clickedState: {
-      opacity: 1, x: "-32vw", y: "-40vh", marginBottom: "12vh",
+      opacity: 1, x: "-32vw", y: "10vh", marginBottom: "12vh",
       marginLeft: "-25vw", scale: 1.5, width: "14vw", height: "100%"
     },
     unClickedState: { opacity: 0.2 },
@@ -40,7 +41,7 @@ export const FeedCard = () => {
       variants={cardVariants}
       onClick={() => setIsClicked(!isClicked)}
     >
-      <Card sx={{ minWidth: "10vw" }}
+      <Card sx={{ minWidth: "10vw" }} 
       >
         <CardContent>
           <Typography sx={{ fontSize: 20 }}>
@@ -51,9 +52,15 @@ export const FeedCard = () => {
           </motion.Typography>
         </CardContent>
 
-        <ImageList sx={{ marginLeft: 2, width: 250, height: 225 }}>
+        <ImageList sx={{ marginLeft: 2, width: 250, height : 400 }}
+          rowHeight={10}
+        >
           {itemData.map((item) => (
-            <ImageListItem key={item.img}>
+            <ImageListItem key={item.img}
+              onClick={() => {
+                setPostId(item.id)
+              }}
+            >
               <img
                 src={item.image}
                 alt={item.title}

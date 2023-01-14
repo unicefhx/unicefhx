@@ -21,7 +21,7 @@ export function CreatePostCard() {
 			<CardHeader
 				avatar={
 					<Avatar src={user.user_metadata.image}>
-						{user.user_metadata?.full_name?.[0]}
+						{user.user_metadata?.name?.[0]}
 					</Avatar>
 				}
 				action={
