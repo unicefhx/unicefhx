@@ -27,8 +27,8 @@ function App() {
 	const [user, setUser] = useState();
 
 	useEffect(() => {
-		supabase.auth.getUser().then((user) => {
-			setUser(user);
+		supabase.auth.getUser().then((res) => {
+			setUser(res.data.user);
 		});
 
 		supabase.auth.onAuthStateChange((event, session) => {
