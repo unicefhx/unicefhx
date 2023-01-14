@@ -1,29 +1,37 @@
 import AddIcon from "@mui/icons-material/Add";
-import EditIcon from "@mui/icons-material/Edit";
+import MoreVert from "@mui/icons-material/MoreVert";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
-import TextField from "@mui/material/TextField";
-import MoreVert from "@mui/icons-material/MoreVert";
-import Stack from "@mui/material/Stack";
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { UserActionDialog } from "./UserActionDialog";
+import { UserContext } from "../lib/UserContext";
 import { supabase } from "../lib/supabase";
+import Typography from "@mui/material/Typography";
 
 export function CreatePostCard() {
-	const [editOpen, setEditOpen] = React.useState(false);
+	const [editOpen, setEditOpen] = useState(false);
+	const [profileUrl, setProfileUrl] = useState(null);
+	const user = useContext(UserContext);
+
+	useEffect(() => {
+		const {
+			data: { publicUrl },
+		} = supabase.storage.from("assets").getPublicUrl(user.id);
+		setProfileUrl(publicUrl);
+	}, []);
 
 	return (
 		<Card sx={{ width: 400 }}>
 			<CardContent>
 				<CardHeader
-					avatar={<Avatar>R</Avatar>}
+					avatar={
+						<Avatar src={profileUrl}>
+							{user.user_metadata?.full_name?.[0]}
+						</Avatar>
+					}
 					action={
 						<>
 							<IconButton onClick={() => setEditOpen(true)}>
@@ -34,53 +42,18 @@ export function CreatePostCard() {
 							</IconButton>
 						</>
 					}
-					title="Robert Smith"
-					subheader="Journaliste Unicef"
+					title={
+						<>
+							{user.user_metadata?.full_name}{" "}
+							<span style={{ color: "grey" }}>
+								{user.user_metadata?.position}
+							</span>
+						</>
+					}
+					subheader={user.email}
 				/>
 			</CardContent>
-			<Dialog open={editOpen} onClose={() => setEditOpen(false)}>
-				<DialogTitle>Modifier votre profile</DialogTitle>
-				<DialogContent>
-					<Stack direction="row" spacing={5}>
-						<Stack direction="column" spacing={2}>
-							<Avatar sx={{ width: 100, height: 100 }}>R</Avatar>
-							<div style={{ display: "flex", justifyItems: "center" }}>
-								<Button
-									color="primary"
-									component="label"
-									startIcon={<EditIcon />}
-								>
-									<input hidden accept="image/*" type="file" />
-									Photo
-								</Button>
-							</div>
-						</Stack>
-						<Stack>
-							<TextField
-								autoFocus
-								margin="dense"
-								id="name"
-								label="Votre nom"
-								fullWidth
-								variant="standard"
-							/>
-							<TextField
-								autoFocus
-								margin="dense"
-								id="name"
-								label="Votre position"
-								fullWidth
-								variant="standard"
-							/>
-						</Stack>
-					</Stack>
-				</DialogContent>
-				<DialogActions>
-					<Button onClick={() => supabase.auth.signOut()}>Deconnexion</Button>
-					<Button onClick={() => setEditOpen(false)}>Annuler</Button>
-					<Button onClick={() => setEditOpen(false)}>Modifier</Button>
-				</DialogActions>
-			</Dialog>
+			<UserActionDialog open={editOpen} setOpen={setEditOpen} />
 		</Card>
 	);
 }
