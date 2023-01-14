@@ -76,10 +76,8 @@ export const FeedCard = () => {
 
     const cardVariants = {
         onHover : { opacity : 1 },
-        clickedState : { opacity : 1, marginBottom : 200, marginLeft : -410, scale : 2, width : 275 },
+        clickedState : { opacity : 1, marginBottom : 130, marginLeft : -385, scale : 1.8, width : 275 },
         unClickedState : { opacity : 0.2 },
-        clickedStateImgList : { opacity : 1, marginBottom : 200, marginLeft : -500, scale : 2, width : 275 },
-        unClickedStateImgList : { opacity : 1, marginBottom : 200, marginLeft : -500, scale : 2 },
     }
 
     const [isClicked, setIsClicked] = React.useState(false);
@@ -96,15 +94,17 @@ export const FeedCard = () => {
             onClick={() => setIsClicked(!isClicked)}
         >
 			<Card sx={{ minWidth: 275 }}
-                animate={isClicked ? 'clickedStateImgList' : 'unClickedStateImgList'}
             >
 				<CardContent>
-					<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+					<Typography sx={{ fontSize: 20 }}>
 						Votre fil d'actualité :
 					</Typography>
+          <motion.Typography style={{ fontSize: 14 }}>
+						(Cliquez-ici pour agrandir/rétrécir)
+					</motion.Typography>
 				</CardContent>
 
-                <ImageList sx={{ width: 250, height: 225 }}>
+                <ImageList sx={{ marginLeft: 2, width: 250, height: 225 }}>
                     {itemData.map((item) => (
                         <ImageListItem key={item.img}>
                         <img
@@ -115,19 +115,12 @@ export const FeedCard = () => {
                         />
                         <ImageListItemBar
                             title={item.title}
-                            subtitle={<span>by: {item.author}</span>}
+                            subtitle={<span style={{ fontSize: 10 }}>by: {item.author}</span>}
                             position="below"
                         />
                         </ImageListItem>
                     ))}
                 </ImageList>
-
-				<CardActions>
-					<Button size="small"
-						variant="contained">
-                        Postez
-					</Button>
-				</CardActions>
 			</Card>
 		</motion.div>
 	);

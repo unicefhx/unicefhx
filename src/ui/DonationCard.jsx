@@ -20,7 +20,8 @@ export const DonationCard = () => {
 				<CardActions>
 					<Button size="small"
 						variant="contained"
-						href="https://secure.unicef.ca/page/30466/donate">
+						onClick={() => window.open("https://secure.unicef.ca/page/30466/donate")}
+						>
 						Learn More
 					</Button>
 				</CardActions>

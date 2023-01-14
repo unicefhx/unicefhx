@@ -2,6 +2,7 @@ import "./App.css";
 import { LoginForm } from "./ui/LoginForm";
 import { DonationCard } from "./ui/DonationCard";
 import { FeedCard } from "./ui/FeedCard";
+import { LogoIcon } from "./ui/LogoIcon";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -10,6 +11,8 @@ import { supabase } from "./lib/supabase";
 import { useEffect, useState } from "react";
 import { CreatePostCard } from "./ui/ActionCard";
 import { UserContext } from "./lib/UserContext";
+
+import { motion } from 'framer-motion';
 
 const darkTheme = createTheme({
 	palette: {
@@ -42,42 +45,50 @@ function App() {
 			<ThemeProvider theme={darkTheme}>
 				<CssBaseline />
 				<GlobeView />
-				<div
+				<motion.div
 					style={{
-						right: 0,
+						right: -500,
 						top: 0,
 						...slotStyles,
 					}}
+					animate={{ right : 0 }}
+					transition={{ duration : 0.75 }}
 				>
 					{user ? <CreatePostCard /> : <LoginForm />}
-				</div>
-				<div
+				</motion.div>
+				<motion.div
 					style={{
-						right: 0,
+						right: -500,
 						bottom: 0,
 						...slotStyles,
 					}}
+					animate={{ right : 0 }}
+					transition={{ duration : 0.75 }}
 				>
 					<FeedCard />
-				</div>
-				<div
+				</motion.div>
+				<motion.div
 					style={{
-						left: 0,
+						x: -170,
 						top: 0,
 						...slotStyles,
 					}}
+					animate={{ x : 25 }}
+					transition={{ duration : 0.75 }}
 				>
-					Test
-				</div>
-				<div
+					<LogoIcon/>
+				</motion.div>
+				<motion.div
 					style={{
-						left: 0,
+						x: -300,
 						bottom: 0,
 						...slotStyles,
 					}}
+					animate={{ x : 0 }}
+					transition={{ duration : 0.75 }}
 				>
 					<DonationCard />
-				</div>
+				</motion.div>
 			</ThemeProvider>
 		</UserContext.Provider>
 	);
