@@ -6,6 +6,7 @@ import { UserContext } from "../lib/UserContext"
 import { PostData } from "../types"
 import { LiveChat } from "./LiveChat"
 import { PostView } from "./PostView"
+import { Reaction } from "./Reaction"
 
 export const PostIDContext = createContext<string>("")
 
@@ -57,13 +58,16 @@ export const ExpandedPostView = () => {
                             }
                             subheader={c.text}
                         />
+                        <div style={{ marginLeft: 10 }}>
+                            <Reaction />
+                        </div>
                     </Card>
                 })}
             </>}
             <TextField
                 multiline
                 label="Commentaire" value={text} onChange={(e) => setText(e.target.value)} fullWidth />
-                {isSending && "Sending..."}
+            {isSending && "Sending..."}
             <Button
                 fullWidth
                 onClick={async () => {
@@ -83,7 +87,7 @@ export const ExpandedPostView = () => {
                     if (await isToxic(text)) {
                         setIsSending(false)
                         alert("Wowow, chill man, your message too toxic")
-                        return 
+                        return
                     }
 
                     const c = {

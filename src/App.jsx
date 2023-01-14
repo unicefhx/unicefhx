@@ -15,6 +15,7 @@ import { UserContext } from "./lib/UserContext";
 import { ExpandedPostView, PostIDContext } from "./ui/ExpandedPostView"
 
 import { motion } from "framer-motion";
+import { SearchBar } from "./ui/SearchBar";
 
 const darkTheme = createTheme({
 	palette: {
@@ -94,6 +95,15 @@ function App() {
 					>
 						<DonationCard />
 					</motion.div>
+					<div
+						style={{
+							top: 0,
+							left: "calc(50% - 120px)",
+							...slotStyles
+						}}
+					>
+						<SearchBar />
+					</div>
 				</ThemeProvider>
 			</UserContext.Provider>
 		</PostIDContext.Provider>
