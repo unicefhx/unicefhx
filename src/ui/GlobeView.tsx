@@ -4,10 +4,8 @@ import { supabase } from "../lib/supabase";
 import { setPostId } from "../App";
 
 export const GlobeView = () => {
-	const [countries, setCountries] = useState({ features: [] });
 
 	useEffect(() => {
-		// fetch('../datasets/ne_110m_admin_0_countries.geojson').then(res => res.json()).then(setCountries);
 		supabase.from("posts").select("*").then(({data}) => {
 			setGData(data!.map(p => ({
 				lng: p.longitude,
@@ -19,7 +17,6 @@ export const GlobeView = () => {
 		})
 	}, []);
 
-	const N = 30;
 	const [gData, setGData] = useState<any[]>([])
 
 	const markerSvg = `<svg viewBox="-4 0 36 36">
@@ -29,16 +26,10 @@ export const GlobeView = () => {
 
 	return (
 		<Globe globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
-			hexPolygonsData={countries.features}
-			hexPolygonResolution={3}
-			hexPolygonMargin={0.3}
-			hexPolygonColor={() => `#${Math.round(Math.random() * Math.pow(2, 24)).toString(16).padStart(6, '0')}`}
-			hexPolygonLabel={({ properties: d }) => `
-			<b>${d.ADMIN} (${d.ISO_A2})</b> <br />
-			Population: <i>${d.POP_EST}</i>
-			`}
+			
 			htmlElementsData={gData}
-			htmlElement={d => {
+			htmlElement={_d => {
+				const d = _d as any
 				const el = document.createElement('div');
 				el.innerHTML = markerSvg;
 				el.style.color = d.color;
