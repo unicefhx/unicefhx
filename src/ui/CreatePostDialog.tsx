@@ -1,6 +1,8 @@
 import {
+	Autocomplete,
 	Button,
 	ButtonGroup,
+	Chip,
 	Dialog,
 	DialogActions,
 	DialogContent,
@@ -46,6 +48,7 @@ export const CreatePostDialog = (props: {
 			value: "Salut Monde!",
 		},
 	]);
+	const [tags, setTags] = useState<string[]>([]);
 
 	function MapEventHandler() {
 		const map = useMapEvents({
@@ -63,6 +66,27 @@ export const CreatePostDialog = (props: {
 		});
 		setMap(map);
 		return null;
+	}
+
+	async function publish() {
+		const { data, error } = await supabase.from("posts").insert([
+			{
+				updated_at: new Date(),
+				author_id: user?.id,
+				title,
+				preview,
+				body,
+				image: body.find((v) => v.kind === "image")?.value as string,
+				created_at: new Date().toISOString(),
+				latitude,
+				longitude,
+				tags,
+			},
+		]);
+		if (error) {
+			console.log(error);
+		}
+		props.setOpen(false);
 	}
 
 	function BodyControlButton(props: { i: number }) {
@@ -168,6 +192,30 @@ export const CreatePostDialog = (props: {
 						value={preview}
 						onChange={(e) => setPreview(e.target.value)}
 					/>
+					<Autocomplete
+						multiple
+						freeSolo
+						options={[]}
+						value={tags}
+						onChange={(_, v) => setTags(v)}
+						renderTags={(value: readonly string[], getTagProps) =>
+							value.map((option: string, index: number) => (
+								<Chip
+									variant="outlined"
+									label={option}
+									{...getTagProps({ index })}
+								/>
+							))
+						}
+						renderInput={(params) => (
+							<TextField
+								{...params}
+								label="Tags"
+								margin="dense"
+								placeholder="Ecrire un tag puis appuyer sur entrer"
+							/>
+						)}
+					/>
 					<Typography variant="h6" sx={{ marginTop: 1 }}>
 						Geolocalisation
 					</Typography>
@@ -248,7 +296,7 @@ export const CreatePostDialog = (props: {
 							created_at: new Date().toISOString(),
 							latitude,
 							longitude,
-							tags: [],
+							tags,
 						}}
 					/>
 				</div>
@@ -257,8 +305,8 @@ export const CreatePostDialog = (props: {
 				<Button onClick={() => props.setOpen(false)} color="primary">
 					Cancel
 				</Button>
-				<Button onClick={() => props.setOpen(false)} color="primary">
-					Create
+				<Button onClick={publish} color="primary">
+					Publier
 				</Button>
 			</DialogActions>
 		</Dialog>

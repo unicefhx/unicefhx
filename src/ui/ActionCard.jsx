@@ -17,37 +17,38 @@ export function CreatePostCard() {
 	const user = useContext(UserContext);
 
 	return (
-		<Card sx={{ width: 400 }}>
-			<CardContent>
-				<CardHeader
-					avatar={
-						<Avatar src={user.user_metadata.image}>
-							{user.user_metadata?.full_name?.[0]}
-						</Avatar>
-					}
-					action={
-						<>
-							<IconButton onClick={() => setEditOpen(true)}>
-								<MoreVert />
-							</IconButton>
-							<IconButton onClick={() => setCreateOpen(true)}>
-								<AddIcon />
-							</IconButton>
-						</>
-					}
-					title={
-						<>
-							{user.user_metadata?.name}{" "}
-							<span style={{ color: "grey" }}>
-								{user.user_metadata?.position}
-							</span>
-						</>
-					}
-					subheader={user.email}
-				/>
-			</CardContent>
+		<Card sx={{ width: 350, padding: 0 }}>
+			<CardHeader
+				avatar={
+					<Avatar src={user.user_metadata.image}>
+						{user.user_metadata?.full_name?.[0]}
+					</Avatar>
+				}
+				action={
+					<>
+						<IconButton onClick={() => setEditOpen(true)}>
+							<MoreVert />
+						</IconButton>
+						<IconButton onClick={() => setCreateOpen(true)}>
+							<AddIcon />
+						</IconButton>
+					</>
+				}
+				title={
+					<>
+						{user.user_metadata?.name}{" "}
+						<span style={{ color: "grey" }}>
+							{user.user_metadata?.position}
+						</span>
+					</>
+				}
+				subheader={user.email}
+			/>
+
 			<UserActionDialog open={editOpen} setOpen={setEditOpen} />
-			<CreatePostDialog open={createOpen} setOpen={setCreateOpen} />
+			{user.user_metadata?.name && (
+				<CreatePostDialog open={createOpen} setOpen={setCreateOpen} />
+			)}
 		</Card>
 	);
 }
