@@ -18,7 +18,11 @@ export const DonationCard = () => {
 					</Typography>
 				</CardContent>
 				<CardActions>
-					<Button size="small">Learn More</Button>
+					<Button size="small"
+						variant="contained"
+						href="https://secure.unicef.ca/page/30466/donate">
+						Learn More
+					</Button>
 				</CardActions>
 			</Card>
 		</div>

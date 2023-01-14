@@ -1,6 +1,7 @@
 import "./App.css";
 import { LoginForm } from "./ui/LoginForm";
 import { DonationCard } from "./ui/DonationCard";
+import { FeedCard } from "./ui/FeedCard";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -57,7 +58,7 @@ function App() {
 						...slotStyles,
 					}}
 				>
-					Test
+					<FeedCard />
 				</div>
 				<div
 					style={{
