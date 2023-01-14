@@ -1,31 +1,62 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Input from "@mui/material/Input";
 import Typography from "@mui/material/Typography";
+import React, { useState } from "react";
+import { supabase } from "../lib/supabase";
 
 export function LoginForm() {
+	const [email, setEmail] = useState("");
+	const [error, setError] = useState(null);
+	const [ok, setOk] = useState(false);
+
+	async function signInWithEmail() {
+		const { error } = await supabase.auth.signInWithOtp({
+			email,
+			options: {
+				emailRedirectTo: "https://example.com/welcome",
+			},
+		});
+
+		if (error) {
+			setError(error.message);
+		} else {
+			setOk(true);
+			setError(null);
+		}
+	}
+
 	return (
-		<Card sx={{ minWidth: 275 }}>
+		<Card sx={{ maxWidth: 400 }}>
 			<CardContent>
 				<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-					Vous n'avez
+					Vous n'avez pas de compte.
+				</Typography>
+				<Typography sx={{ mb: 1.5 }} color="text.secondary">
+					Créez-en un maintenant avec e-mail!
+				</Typography>
+				<Typography variant="body2" sx={{ marginBottom: 2 }}>
+					En créant un compte, vous acceptez nos conditions d'utilisation et
+					notre politique de confidentialité.
 				</Typography>
 
-				<Typography sx={{ mb: 1.5 }} color="text.secondary">
-					adjective
-				</Typography>
-				<Typography variant="body2">
-					well meaning and kindly.
-					<br />
-					{'"a benevolent smile"'}
-				</Typography>
+				<Input
+					placeholder="Email"
+					onChange={(e) => setEmail(e.target.value)}
+					error={error}
+				/>
+				<Button
+					variant="contained"
+					size="small"
+					sx={{ marginLeft: 1 }}
+					onClick={signInWithEmail}
+				>
+					Envoyer le lien
+				</Button>
+				{error && <Typography color="error">{error}</Typography>}
+				{ok && <Typography color="limegreen">Lien envoyé!</Typography>}
 			</CardContent>
-			<CardActions>
-				<Button variant="contained" size="small">Connectez-vous</Button>
-			</CardActions>
 		</Card>
 	);
 }

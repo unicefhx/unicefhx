@@ -15,8 +15,6 @@ export const DonationCard = () => {
 					</Typography>
 					<Typography variant="body2">
 						Faites un don à l'UNICEF
-						<br />
-						{'"a benevolent smile"'}
 					</Typography>
 				</CardContent>
 				<CardActions>
